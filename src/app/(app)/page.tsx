@@ -1,9 +1,16 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import { fetchAPI } from "@/lib/fetchAPI";
+import { payload } from "@/lib/payload";
 
 export default async function Home() {
-  const posts = await fetchAPI("/posts");
+  const { docs: posts } = await payload.find({
+    collection: "posts",
+    limit: 10,
+  });
+
+
+
+  console.log(JSON.stringify(posts));
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -15,9 +22,6 @@ export default async function Home() {
           height={38}
           priority
         />
-        <p>
-          Fetched post from api : <b>{posts.docs[0].title}</b>
-        </p>
         <ol>
           <li>
             Get started by editing <code>src/app/page.tsx</code>.
