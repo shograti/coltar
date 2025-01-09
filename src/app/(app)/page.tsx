@@ -1,7 +1,9 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import { fetchAPI } from "@/lib/fetchAPI";
 
-export default function Home() {
+export default async function Home() {
+  const posts = await fetchAPI("/posts");
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -13,6 +15,9 @@ export default function Home() {
           height={38}
           priority
         />
+        <p>
+          Fetched post from api : <b>{posts.docs[0].title}</b>
+        </p>
         <ol>
           <li>
             Get started by editing <code>src/app/page.tsx</code>.
