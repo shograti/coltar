@@ -4,11 +4,11 @@ import styles from "./styles.module.css";
 
 export function Post({ post }) {
   return (
-    <>
+    <article>
       <Link href={`/poemes/${post.slug}`}>
         <h2 className={styles.title}>{post.title}</h2>
       </Link>
       <RichText className={styles.text_block} data={post.content} />
-    </>
+    </article>
   );
 }

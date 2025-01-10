@@ -13,17 +13,9 @@ export default async function Home() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.latest_post}>
-        <Post post={sortedPosts[0]} />
-      </div>
-      <div className={styles.footer_posts}>
-        <div>
-          <Post post={sortedPosts[1]} />
-          <div>
-            <Post post={sortedPosts[2]} />
-          </div>
-        </div>
-      </div>
+      {sortedPosts.map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
     </div>
   );
 }
