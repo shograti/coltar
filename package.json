@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "db:start": "sudo docker-compose up -d",   
+    "db:start": "sudo docker-compose up -d",
     "db:stop": "sudo docker stop postgres_container",
     "dev": "npm run db:start && NODE_ENV=development next dev --turbopack",
     "build": "NODE_ENV=production next build",
@@ -14,7 +14,9 @@
     "@payloadcms/db-postgres": "^3.15.1",
     "@payloadcms/next": "^3.15.1",
     "@payloadcms/richtext-lexical": "^3.15.1",
+    "escape-html": "^1.0.3",
     "graphql": "^16.10.0",
+    "lexical": "^0.23.1",
     "next": "15.1.4",
     "payload": "^3.15.1",
     "react": "^19.0.0",
