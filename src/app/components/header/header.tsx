@@ -4,7 +4,9 @@ import styles from "./styles.module.css";
 function Header() {
   return (
     <header className={styles.header}>
-      <h1>Coltar</h1>
+      <Link href="/">
+        <h1>Coltar</h1>
+      </Link>
       <nav className={styles.nav}>
         <Link href="/contact">Contact</Link>
       </nav>
