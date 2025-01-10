@@ -1,104 +1,32 @@
-import Image from "next/image";
+import { RichTextRenderer } from "../components/rich-text-renderer/rich-text-renderer";
+import { sortByMostRecent } from "../utils/get-most-recent";
 import styles from "./page.module.css";
 import { payload } from "@/lib/payload";
 
 export default async function Home() {
   const { docs: posts } = await payload.find({
     collection: "posts",
-    limit: 10,
+    limit: 3,
   });
 
+  const sortedPosts = sortByMostRecent(posts);
 
-
-  console.log(JSON.stringify(posts));
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div className={styles.container}>
+      <div className={styles.latest_post}>
+        <h2>{sortedPosts[0].title}</h2>
+        <RichTextRenderer node={sortedPosts[0].content.root} />
+      </div>
+      <div className={styles.footer_posts}>
+        <div>
+          <h2>{sortedPosts[1].title}</h2>
+          <RichTextRenderer node={sortedPosts[1].content.root} />
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div>
+          <h2>{sortedPosts[2].title}</h2>
+          <RichTextRenderer node={sortedPosts[2].content.root} />
+        </div>
+      </div>
     </div>
   );
 }
