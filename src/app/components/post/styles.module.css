@@ -1,0 +1,13 @@
+.text_block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.text_block p {
+  line-height: 1rem;
+}
+
+.title {
+  margin-bottom: 0.75em;
+}

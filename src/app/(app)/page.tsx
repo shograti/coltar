@@ -1,8 +1,7 @@
-import Link from "next/link";
-import { sortByMostRecent } from "../utils/get-most-recent";
 import styles from "./page.module.css";
+import { sortByMostRecent } from "../utils/get-most-recent";
 import { payload } from "@/lib/payload";
-import { RichText } from "@payloadcms/richtext-lexical/react";
+import { Post } from "../components/post/post";
 
 export default async function Home() {
   const { docs: posts } = await payload.find({
@@ -15,29 +14,14 @@ export default async function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.latest_post}>
-        <Link href={`/poemes/${sortedPosts[0].slug}`}>
-          <h2>{sortedPosts[0].title}</h2>
-        </Link>
-        <RichText className={styles.text_block} data={sortedPosts[0].content} />
+        <Post post={sortedPosts[0]} />
       </div>
       <div className={styles.footer_posts}>
         <div>
-          <Link href={`/poemes/${sortedPosts[0].slug}`}>
-            <h2>{sortedPosts[0].title}</h2>
-          </Link>
-          <RichText
-            className={styles.text_block}
-            data={sortedPosts[1].content}
-          />
-        </div>
-        <div>
-          <Link href={`/poemes/${sortedPosts[0].slug}`}>
-            <h2>{sortedPosts[0].title}</h2>
-          </Link>
-          <RichText
-            className={styles.text_block}
-            data={sortedPosts[2].content}
-          />
+          <Post post={sortedPosts[1]} />
+          <div>
+            <Post post={sortedPosts[2]} />
+          </div>
         </div>
       </div>
     </div>

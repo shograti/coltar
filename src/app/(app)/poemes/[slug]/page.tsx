@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import React, { Fragment } from "react";
 import { payload } from "@/lib/payload";
-import { Post } from "payload-types";
+import { Post } from "@/app/components/post/post";
 
 interface PageParams {
   params: Promise<{
@@ -11,7 +11,6 @@ interface PageParams {
 
 export default async function Page({ params: paramsPromise }: PageParams) {
   const { slug } = await paramsPromise;
-
 
   const postRes = await payload.find({
     collection: "posts",
@@ -32,9 +31,7 @@ export default async function Page({ params: paramsPromise }: PageParams) {
 
   return (
     <Fragment>
-      <main>
-        <h1>{post.title}</h1>
-      </main>
+      <Post post={post} />
     </Fragment>
   );
 }
