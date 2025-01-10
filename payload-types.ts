@@ -80,6 +80,7 @@ export interface Post {
     };
     [k: string]: unknown;
   };
+  authors: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -165,6 +166,7 @@ export interface PostsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   content?: T;
+  authors?: T;
   updatedAt?: T;
   createdAt?: T;
 }
