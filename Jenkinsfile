@@ -32,15 +32,15 @@ stage('Deploy to VPS') {
             script {
                 sh """
                 # SSH into your VPS and create the directory if it doesn't exist
-                ssh -o StrictHostKeyChecking=no ${VPS_USER}@${VPS_HOST} 'mkdir -p root/coltar'
+                ssh -o StrictHostKeyChecking=no ${VPS_USER}@${VPS_HOST} 'mkdir -p ../home/coltar'
 
                 # Copy the project files from Jenkins to the VPS
-                scp -o StrictHostKeyChecking=no -r . ${VPS_USER}@${VPS_HOST}:root/coltar
+                scp -o StrictHostKeyChecking=no -r . ${VPS_USER}@${VPS_HOST}:../home/coltar
 
                 # SSH into your VPS and deploy the Docker containers using docker-compose
                 ssh -o StrictHostKeyChecking=no ${VPS_USER}@${VPS_HOST} << EOF
                 # Navigate to the directory containing docker-compose.yml on your VPS
-                cd root/coltar
+                cd ../home/coltar
 
                 # Stop and remove any existing containers
                 docker-compose down
