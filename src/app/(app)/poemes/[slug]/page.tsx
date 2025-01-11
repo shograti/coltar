@@ -36,7 +36,7 @@ export async function generateStaticParams() {
   const postsRes = await payload.find({
     collection: "posts",
     draft: true,
-    limit: 199,
+    limit: 198,
   });
 
   const posts = postsRes?.docs;
