@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "db:start": "sudo docker-compose up -d",
+    "db:start": "sudo lsof -i:5432 | grep LISTEN && sudo service postgresql stop || true && sudo docker-compose up -d",
     "db:stop": "sudo docker stop postgres_container",
     "dev": "npm run db:start && NODE_ENV=development next dev --turbopack",
     "build": "NODE_ENV=production next build",

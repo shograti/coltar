@@ -7,5 +7,13 @@
 
 .nav {
   display: flex;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   gap: 1em;
+}
+
+.header a h1 {
+  color: black;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
 }

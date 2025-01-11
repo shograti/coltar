@@ -11,3 +11,13 @@
 .title {
   margin-bottom: 0.75em;
 }
+
+.authors {
+  margin-top: 1em;
+  font-style: italic;
+  font-size: 0.85em;
+}
+
+.authors a {
+  font-weight: 900;
+}

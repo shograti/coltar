@@ -23,8 +23,8 @@ export const Posts: CollectionConfig = {
       required: true,
     },
     {
-      name: "authors",
-      label:"Auteur(s)",
+      name: "author",
+      label:"Auteur",
       type: "text",
       required: true,
     },
