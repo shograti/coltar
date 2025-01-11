@@ -5,13 +5,30 @@ services:
     image: postgres:latest
     container_name: postgres_container
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER} # You can set this in a .env file or Jenkins environment variables
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # You can set this in a .env file or Jenkins environment variables
+      POSTGRES_DB: ${POSTGRES_DB} # You can set this in a .env file or Jenkins environment variables
     ports:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  nextjs:
+    build: .
+    container_name: nextjs_container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres # Ensures Next.js waits for PostgreSQL to be ready before starting
+    environment:
+      POSTGRES_HOST: postgres # Connect to the postgres service defined in this Docker Compose file
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - .:/app
+    command: npm start
 
 volumes:
   postgres_data:
