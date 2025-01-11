@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     triggers {
         githubPush()
     }
@@ -12,7 +12,7 @@ pipeline {
 
         VPS_HOST = "212.227.80.166"  
 
-        SSH_KEY = credentials('95c57288-c29b-4ffa-9a8b-106bec5911fc')
+        SSH_KEY = credentials('root')
     }
 
     stages {
